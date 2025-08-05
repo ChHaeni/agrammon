@@ -34,6 +34,12 @@ sub get-builtins is export {
                     unless $filter-group ~~ Agrammon::Outputs::FilterGroupCollection;
             $filter-group.add(+$additor)
         },
+        # power all values in a filter group to a scalar
+        pow => -> $filter-group, $base {
+            die "pow operator expects a filter group as its first argument"
+                    unless $filter-group ~~ Agrammon::Outputs::FilterGroupCollection;
+            $filter-group.pow(+$base)
+        },
         # Select only values in filter group 'a'
         # where values in filter group 'crit' are greater than 0
         selectStrict => -> $filter-group-a, $filter-group-crit {
