@@ -106,6 +106,15 @@ class Agrammon::Outputs::FilterGroupCollection {
                 :$!provenance
     }
 
+    #| Produce a new filter group collection which has the values of this one powered to
+    #| a specified base. This can be used to implement `scalar ** group`, `group ** scalar`
+    #| (these two just commute).
+    method pow(Numeric $factor --> Agrammon::Outputs::FilterGroupCollection) {
+        self.bless:
+                :instances(%!values-by-filter.map({ .key => .value ** $factor })),
+                :$!provenance
+    }
+
     #| Produce a new filter group collection which has the sign of this one.
     method sign() {
         self.bless:
