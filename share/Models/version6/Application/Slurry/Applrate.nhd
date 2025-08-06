@@ -100,7 +100,7 @@ taxonomy = Application::Slurry::Applrate
   ++description
     todo
   ++formula
-    1 / (In(dilution_parts_water) + 1));
+    1 / (In(dilution_parts_water) + 1);
 
 +TAN_content
   print = 15
