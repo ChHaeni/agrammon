@@ -111,7 +111,7 @@ class Agrammon::Outputs::FilterGroupCollection {
     #| (these two just commute).
     method pow(Numeric $factor --> Agrammon::Outputs::FilterGroupCollection) {
         self.bless:
-                :instances(%!values-by-filter.map({ .key => .value ** $factor })),
+                :instances(%!values-by-filter.map({ .key => $factor ** .value })),
                 :$!provenance
     }
 
