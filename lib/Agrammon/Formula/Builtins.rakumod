@@ -35,7 +35,7 @@ sub get-builtins is export {
             $filter-group.add(+$additor)
         },
         # power all values in a filter group to a scalar
-        pow => -> $filter-group, $base {
+        pow => -> $base, $filter-group {
             die "pow operator expects a filter group as its first argument"
                     unless $filter-group ~~ Agrammon::Outputs::FilterGroupCollection;
             $filter-group.pow(+$base)
