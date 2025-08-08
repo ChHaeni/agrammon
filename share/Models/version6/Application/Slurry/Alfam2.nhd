@@ -57,12 +57,12 @@ Hafner et al. ??? ALFAM2
   ++description
     average annual air temperature
 
-+alfam2_sqrt_u
-  value = sqrt(1.5)
++alfam2_wind_speed
+  value = 1.5
   ++units
     en = m/s
   ++description
-    sqrt of average annual wind speed
+    average annual wind speed
 
 +alfam2_f0_int
   value = -
@@ -264,7 +264,7 @@ Hafner et al. ??? ALFAM2
       ),
       Tech(alfam2_r1_int) + Tech(alfam2_r1_temp) * 
       Tech(alfam2_temp) + Tech(alfam2_r1_sqrt_u) * 
-      Tech(alfam2_sqrt_u) + $TE->{'alfam2_r1_'.$tech}
+      sqrt(Tech(alfam2_wind_speed)) + $TE->{'alfam2_r1_'.$tech}
     ) P+
     scale(
       Out(alfam2_ph),
@@ -272,9 +272,10 @@ Hafner et al. ??? ALFAM2
     ); 
     # r1 array
     my $r1 = pow(10.0, $r1_sum);
-    return $r1;
-    ## r2 number
-    #my $r2 = 10 ** Tech(alfam2_r2_int);
+    # return $r1;
+    # # r2 number
+    # my $r2 = 10 ** Tech(alfam2_r2_int);
+    # return $r2;
     ## sum up all r3 parameters
     #my $r3_sum = add(
     #  scale(
