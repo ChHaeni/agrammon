@@ -215,6 +215,7 @@ grammar Agrammon::Formula::Parser {
     token infix:sym</> { '/' }
     token infix:sym<P/> { 'P/' }
     token infix:sym<*> { '*' }
+    token infix:sym<**> { '**' }
     token infix:sym<P*> { 'P*' }
     token infix:sym<+> { '+' }
     token infix:sym<P+> { 'P+' }
