@@ -50,6 +50,20 @@ Hafner et al. ??? ALFAM2
   ++description
     pH of cattle slurry
 
++alfam2_temp
+  value = 12
+  ++units
+    en = degree Celsius
+  ++description
+    average annual air temperature
+
++alfam2_sqrt_u
+  value = sqrt(1.5)
+  ++units
+    en = m/s
+  ++description
+    sqrt of average annual wind speed
+
 +alfam2_f0_int
   value = -
   ++units
@@ -106,9 +120,75 @@ Hafner et al. ??? ALFAM2
   ++description
     f0 parameter 
 
++alfam2_r1_int
+  value = -
+  ++units
+    en = -
+  ++description
+    r1 parameter 
 
-# +alfam2_temp
-# +alfam2_wind_speed
++alfam2_r1_dm
+  value = -
+  ++units
+    en = -
+  ++description
+    r1 parameter 
+
++alfam2_r1_ph
+  value = -
+  ++units
+    en = -
+  ++description
+    r1 parameter 
+
++alfam2_r1_temp
+  value = -
+  ++units
+    en = -
+  ++description
+    r1 parameter 
+
++alfam2_r1_sqrt_u
+  value = -
+  ++units
+    en = -
+  ++description
+    r1 parameter 
+
++alfam2_r1_bc
+  value = -
+  ++units
+    en = -
+  ++description
+    r1 parameter 
+
++alfam2_r1_th
+  value = -
+  ++units
+    en = -
+  ++description
+    r1 parameter 
+
++alfam2_r1_ts
+  value = -
+  ++units
+    en = -
+  ++description
+    r1 parameter 
+
++alfam2_r1_os
+  value = -
+  ++units
+    en = -
+  ++description
+    r1 parameter 
+
++alfam2_r1_cs
+  value = -
+  ++units
+    en = -
+  ++description
+    r1 parameter 
 
 *** external ***
 
@@ -175,23 +255,24 @@ Hafner et al. ??? ALFAM2
       Tech(alfam2_f0_int) + $TE->{'alfam2_f0_'.$tech}
     ); # array
     my $f0 = pow($e_val, $f0_sum) P/ add(pow($e_val, $f0_sum), 1.0);
-    return $f0;
-    ## sum up all r1 parameters
-    #my $r1_sum = add(
-    #  scale(
-    #    Out(alfam2_dm),
-    #    Tech(alfam2_r1_dm)
-    #  ),
-    #  Tech(alfam2_r1_int) + Tech(alfam2_r1_temp) * 
-    #  Tech(alfam2_temp) + Tech(alfam2_r1_sqrt_u) * 
-    #  sqrt(Tech(alfam2_wind_speed)) + $TE->{'alfam2_r1_', $tech}
-    #) P+
-    #scale(
-    #  Out(alfam2_ph),
-    #  Tech(alfam2_r1_ph)
-    #); 
-    ## r1 array
-    #my $r1 = pow(10.0, $r1_sum);
+    # return $f0;
+    # sum up all r1 parameters
+    my $r1_sum = add(
+      scale(
+        Out(alfam2_dm),
+        Tech(alfam2_r1_dm)
+      ),
+      Tech(alfam2_r1_int) + Tech(alfam2_r1_temp) * 
+      Tech(alfam2_temp) + Tech(alfam2_r1_sqrt_u) * 
+      Tech(alfam2_sqrt_u) + $TE->{'alfam2_r1_'.$tech}
+    ) P+
+    scale(
+      Out(alfam2_ph),
+      Tech(alfam2_r1_ph)
+    ); 
+    # r1 array
+    my $r1 = pow(10.0, $r1_sum);
+    return $r1;
     ## r2 number
     #my $r2 = 10 ** Tech(alfam2_r2_int);
     ## sum up all r3 parameters
