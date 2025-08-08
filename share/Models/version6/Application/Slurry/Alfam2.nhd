@@ -190,6 +190,63 @@ Hafner et al. ??? ALFAM2
   ++description
     r1 parameter 
 
++alfam2_r2_int
+  value = -
+  ++units
+    en = -
+  ++description
+    r2 parameter 
+
++alfam2_r3_int
+  value = -
+  ++units
+    en = -
+  ++description
+    r3 parameter 
+
++alfam2_r3_ph
+  value = -
+  ++units
+    en = -
+  ++description
+    r3 parameter 
+
++alfam2_r3_bc
+  value = -
+  ++units
+    en = -
+  ++description
+    r3 parameter 
+
++alfam2_r3_th
+  value = -
+  ++units
+    en = -
+  ++description
+    r3 parameter 
+
++alfam2_r3_ts
+  value = -
+  ++units
+    en = -
+  ++description
+    r3 parameter 
+
++alfam2_r3_os
+  value = -
+  ++units
+    en = -
+  ++description
+    r3 parameter 
+
++alfam2_r3_cs
+  value = -
+  ++units
+    en = -
+  ++description
+    r3 parameter 
+
+
 *** external ***
 
 +::Livestock
@@ -273,19 +330,19 @@ Hafner et al. ??? ALFAM2
     # r1 array
     my $r1 = pow(10.0, $r1_sum);
     # return $r1;
-    # # r2 number
-    # my $r2 = 10 ** Tech(alfam2_r2_int);
-    # return $r2;
-    ## sum up all r3 parameters
-    #my $r3_sum = add(
-    #  scale(
-    #    Out(alfam2_ph),
-    #    Tech(alfam2_r3_ph)
-    #  ),
-    #  Tech(alfam2_r3_int) + $TE->{'alfam2_r3_', $tech}
-    #);
-    ## r3 array
-    #my $r3 = pow(10.0, $r3_sum);
+    # r2 number
+    my $r2 = 10 ** Tech(alfam2_r2_int);
+    # sum up all r3 parameters
+    my $r3_sum = add(
+      scale(
+        Out(alfam2_ph),
+        Tech(alfam2_r3_ph)
+      ),
+      Tech(alfam2_r3_int) + $TE->{'alfam2_r3_'. $tech}
+    );
+    # r3 array
+    my $r3 = pow(10.0, $r3_sum);
+    return $r3;
     ## r5 number
     #my $r5 = 10 ** Tech(alfam2_r5_int);
     ## fast/slow pool rates
