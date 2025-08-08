@@ -50,6 +50,63 @@ Hafner et al. ??? ALFAM2
   ++description
     pH of cattle slurry
 
++alfam2_f0_int
+  value = -
+  ++units
+    en = -
+  ++description
+    f0 parameter 
+
++alfam2_f0_pig
+  value = -
+  ++units
+    en = -
+  ++description
+    f0 parameter 
+
++alfam2_f0_dm
+  value = -
+  ++units
+    en = -
+  ++description
+    f0 parameter 
+
++alfam2_f0_bc
+  value = -
+  ++units
+    en = -
+  ++description
+    f0 parameter 
+
++alfam2_f0_th
+  value = -
+  ++units
+    en = -
+  ++description
+    f0 parameter 
+
++alfam2_f0_ts
+  value = -
+  ++units
+    en = -
+  ++description
+    f0 parameter 
+
++alfam2_f0_os
+  value = -
+  ++units
+    en = -
+  ++description
+    f0 parameter 
+
++alfam2_f0_cs
+  value = -
+  ++units
+    en = -
+  ++description
+    f0 parameter 
+
+
 # +alfam2_temp
 # +alfam2_wind_speed
 
@@ -97,79 +154,81 @@ Hafner et al. ??? ALFAM2
       Tech(alfam2_ph_pig)
     );
 
-#+alfam2_trailing_hose
-#  print = 22
-#  ++units
-#    en = todo
-#  ++description
-#    todo
-#  ++formula
-#    # define app tech (bc, th, ts, os, cs)
-#    my $tech = 'th';
-#    # define exp(1)
-#    my $e_val = exp(1);
-#    # sum up all f0 parameters
-#    my $f0_sum = add(
-#      scale(
-#        Val(has_pigs, ::Livestock), 
-#        Tech(alfam2_f0_pig)
-#      ) P+ scale(Out(alfam2_dm), Tech(alfam2_f0_dm)),
-#      Tech(alfam2_f0_int) + $TE->{'alfam2_f0_', $tech}
-#    ); # array
-#    my $f0 = pow($e_val, $f0_sum) P/ add(pow($e_val, $f0_sum), 1.0);
-#    # sum up all r1 parameters
-#    my $r1_sum = add(
-#      scale(
-#        Out(alfam2_dm),
-#        Tech(alfam2_r1_dm)
-#      ),
-#      Tech(alfam2_r1_int) + Tech(alfam2_r1_temp) * 
-#      Tech(alfam2_temp) + Tech(alfam2_r1_sqrt_u) * 
-#      sqrt(Tech(alfam2_wind_speed)) + $TE->{'alfam2_r1_', $tech}
-#    ) P+
-#    scale(
-#      Out(alfam2_ph),
-#      Tech(alfam2_r1_ph)
-#    ); 
-#    # r1 array
-#    my $r1 = pow(10.0, $r1_sum);
-#    # r2 number
-#    my $r2 = 10 ** Tech(alfam2_r2_int);
-#    # sum up all r3 parameters
-#    my $r3_sum = add(
-#      scale(
-#        Out(alfam2_ph),
-#        Tech(alfam2_r3_ph)
-#      ),
-#      Tech(alfam2_r3_int) + $TE->{'alfam2_r3_', $tech}
-#    );
-#    # r3 array
-#    my $r3 = pow(10.0, $r3_sum);
-#    # r5 number
-#    my $r5 = 10 ** Tech(alfam2_r5_int);
-#    # fast/slow pool rates
-#    my $rf = add($r1, $r2);
-#    my $rs = add($r3, $r5);
-#    my $rd = $rf P- $rs;
-#    # initial fast/slow pool contents
-#    #   -> tan_appl can be set to 1 since relative losses
-#    #   are calculated (or better calculate absolute losses??)
-#    #my $f_ini = $f0 * tan_appl
-#    #my $s_ini = (1 - $f0) * tan_appl
-#    my $f_ini = $f0;
-#    my $s_ini = add($f0 P* -1, 1);
-#    #Calculate intermediates
-#    #Calculate pools at *end* of ddt
-#    # set ddt to 72h, 96h?
-#    my $ddt = 96;
-#    my $alpha_f = pow($e_val, scale($rf, -$ddt));
-#    my $alpha_s = pow($e_val, scale($rs, -$ddt));
-#    my $alpha_d = pow($e_val, scale($rd, -$ddt));
-#    my $f_end = $f_ini P* $alpha_f;
-#    my $s_end = $alpha_s P* ($s_ini P+ scale($f_ini, $r2) P* add(scale($alpha_d, -1), 1) P/ $rd);
-#    # final emissions
-#    my $f_emis = $r1 P/ $rf P* $f_ini P* add(scale($alpha_f, -1), 1);
-#    my $s_emis = $r3 P/ $rs P* add(scale($f_end P+ $s_end P+ $f_emis, -1), 1);
-#    return $f_emis + $s_emis;
++er_alfam2_trailing_hose
+  # print = 22
+  print = debug
+  ++units
+    en = -
+  ++description
+    emission factor for trailing hose based on alfam2 calculation
+  ++formula
+    # define app tech (bc, th, ts, os, cs)
+    my $tech = 'th';
+    return $tech;
+    # # define exp(1)
+    # my $e_val = exp(1);
+    # # sum up all f0 parameters
+    # my $f0_sum = add(
+    #   scale(
+    #     Val(has_pigs, ::Livestock), 
+    #     Tech(alfam2_f0_pig)
+    #   ) P+ scale(Out(alfam2_dm), Tech(alfam2_f0_dm)),
+    #   Tech(alfam2_f0_int) + $TE->{'alfam2_f0_', $tech}
+    # ); # array
+    # my $f0 = pow($e_val, $f0_sum) P/ add(pow($e_val, $f0_sum), 1.0);
+    ## sum up all r1 parameters
+    #my $r1_sum = add(
+    #  scale(
+    #    Out(alfam2_dm),
+    #    Tech(alfam2_r1_dm)
+    #  ),
+    #  Tech(alfam2_r1_int) + Tech(alfam2_r1_temp) * 
+    #  Tech(alfam2_temp) + Tech(alfam2_r1_sqrt_u) * 
+    #  sqrt(Tech(alfam2_wind_speed)) + $TE->{'alfam2_r1_', $tech}
+    #) P+
+    #scale(
+    #  Out(alfam2_ph),
+    #  Tech(alfam2_r1_ph)
+    #); 
+    ## r1 array
+    #my $r1 = pow(10.0, $r1_sum);
+    ## r2 number
+    #my $r2 = 10 ** Tech(alfam2_r2_int);
+    ## sum up all r3 parameters
+    #my $r3_sum = add(
+    #  scale(
+    #    Out(alfam2_ph),
+    #    Tech(alfam2_r3_ph)
+    #  ),
+    #  Tech(alfam2_r3_int) + $TE->{'alfam2_r3_', $tech}
+    #);
+    ## r3 array
+    #my $r3 = pow(10.0, $r3_sum);
+    ## r5 number
+    #my $r5 = 10 ** Tech(alfam2_r5_int);
+    ## fast/slow pool rates
+    #my $rf = add($r1, $r2);
+    #my $rs = add($r3, $r5);
+    #my $rd = $rf P- $rs;
+    ## initial fast/slow pool contents
+    ##   -> tan_appl can be set to 1 since relative losses
+    ##   are calculated (or better calculate absolute losses??)
+    ##my $f_ini = $f0 * tan_appl
+    ##my $s_ini = (1 - $f0) * tan_appl
+    #my $f_ini = $f0;
+    #my $s_ini = add($f0 P* -1, 1);
+    ##Calculate intermediates
+    ##Calculate pools at *end* of ddt
+    ## set ddt to 72h, 96h?
+    #my $ddt = 96;
+    #my $alpha_f = pow($e_val, scale($rf, -$ddt));
+    #my $alpha_s = pow($e_val, scale($rs, -$ddt));
+    #my $alpha_d = pow($e_val, scale($rd, -$ddt));
+    #my $f_end = $f_ini P* $alpha_f;
+    #my $s_end = $alpha_s P* ($s_ini P+ scale($f_ini, $r2) P* add(scale($alpha_d, -1), 1) P/ $rd);
+    ## final emissions
+    #my $f_emis = $r1 P/ $rf P* $f_ini P* add(scale($alpha_f, -1), 1);
+    #my $s_emis = $r3 P/ $rs P* add(scale($f_end P+ $s_end P+ $f_emis, -1), 1);
+    #return $f_emis + $s_emis;
 
 
