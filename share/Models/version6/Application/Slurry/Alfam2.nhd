@@ -352,7 +352,6 @@ Hafner et al. ??? ALFAM2
       Tech(alfam2_f0_int) + $TE->{'alfam2_f0_'.$tech}
     ); # array
     my $f0 = pow($e_val, $f0_sum) P/ add(pow($e_val, $f0_sum), 1.0);
-    # return $f0;
     # sum up all r1 parameters
     my $r1_sum = add(
       scale(
@@ -370,7 +369,6 @@ Hafner et al. ??? ALFAM2
     ); 
     # r1 array
     my $r1 = pow(10.0, $r1_sum);
-    # return $r1;
     # r2 number
     my $r2 = 10 ** Tech(alfam2_r2_int);
     # sum up all r3 parameters
@@ -383,7 +381,6 @@ Hafner et al. ??? ALFAM2
     );
     # r3 array
     my $r3 = pow(10.0, $r3_sum);
-    # return $r3;
     # r5 number
     my $r5 = 10 ** Tech(alfam2_r5_int);
     # fast/slow pool rates
@@ -401,19 +398,14 @@ Hafner et al. ??? ALFAM2
     #Calculate pools at *end* of ddt
     # set ddt to 72h, 96h?
     my $mddt = -96;
-    # my $alpha_f = pow($e_val, scale($rf, $mddt));
-    # my $alpha_s = pow($e_val, scale($rs, $mddt));
-    # my $alpha_d = pow($e_val, scale($rd, $mddt));
-    my $alpha_f = scale($rf, $mddt);
-    my $alpha_s = scale($rs, $mddt);
-    my $alpha_d = scale($rd, $mddt);
-    return $f0;
-    # return $alpha_d;
-    # my $f_end = $f_ini P* $alpha_f;
-    # my $s_end = $alpha_s P* ($s_ini P+ scale($f_ini, $r2) P* add(scale($alpha_d, -1), 1) P/ $rd);
-    # # final emissions
-    # my $f_emis = $r1 P/ $rf P* $f_ini P* add(scale($alpha_f, -1), 1);
-    # my $s_emis = $r3 P/ $rs P* add(scale($f_end P+ $s_end P+ $f_emis, -1), 1);
-    # return $f_emis + $s_emis;
+    my $alpha_f = pow($e_val, scale($rf, $mddt));
+    my $alpha_s = pow($e_val, scale($rs, $mddt));
+    my $alpha_d = pow($e_val, scale($rd, $mddt));
+    my $f_end = $f_ini P* $alpha_f;
+    my $s_end = $alpha_s P* ($s_ini P+ scale($f_ini, $r2) P* add(scale($alpha_d, -1), 1) P/ $rd);
+    # final emissions
+    my $f_emis = $r1 P/ $rf P* $f_ini P* add(scale($alpha_f, -1), 1);
+    my $s_emis = $r3 P/ $rs P* add(scale($f_end P+ $s_end P+ $f_emis, -1), 1);
+    return $f_emis P+ $s_emis;
 
 
