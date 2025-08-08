@@ -18,6 +18,7 @@ sub get-builtins is export {
         abs => &abs,
         sign => &sign,
         exp => &exp,
+        sqrt => &sqrt,
         # Construct a filter group from data
         filterGroup => &filter-group,
         # Turn a filter group into a simple scalar value
