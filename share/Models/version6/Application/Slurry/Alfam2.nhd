@@ -164,18 +164,18 @@ Hafner et al. ??? ALFAM2
   ++formula
     # define app tech (bc, th, ts, os, cs)
     my $tech = 'th';
-    return $tech;
-    # # define exp(1)
-    # my $e_val = exp(1);
-    # # sum up all f0 parameters
-    # my $f0_sum = add(
-    #   scale(
-    #     Val(has_pigs, ::Livestock), 
-    #     Tech(alfam2_f0_pig)
-    #   ) P+ scale(Out(alfam2_dm), Tech(alfam2_f0_dm)),
-    #   Tech(alfam2_f0_int) + $TE->{'alfam2_f0_', $tech}
-    # ); # array
-    # my $f0 = pow($e_val, $f0_sum) P/ add(pow($e_val, $f0_sum), 1.0);
+    # define exp(1)
+    my $e_val = exp(1);
+    # sum up all f0 parameters
+    my $f0_sum = add(
+      scale(
+        Val(has_pigs, ::Livestock), 
+        Tech(alfam2_f0_pig)
+      ) P+ scale(Out(alfam2_dm), Tech(alfam2_f0_dm)),
+      Tech(alfam2_f0_int) + $TE->{'alfam2_f0_'.$tech}
+    ); # array
+    my $f0 = pow($e_val, $f0_sum) P/ add(pow($e_val, $f0_sum), 1.0);
+    return $f0;
     ## sum up all r1 parameters
     #my $r1_sum = add(
     #  scale(
