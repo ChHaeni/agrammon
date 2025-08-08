@@ -128,6 +128,10 @@ multi compile(Agrammon::Formula::BinOp::MultiplyPairwise $op) {
     q:c"$env.find-builtin('multiplyPairwise')(({compile($op.left)}), ({compile($op.right)}))"
 }
 
+multi compile(Agrammon::Formula::BinOp::Power $op) {
+    q:c"({compile($op.left)}) ** ({compile($op.right)})"
+}
+
 multi compile(Agrammon::Formula::BinOp::Add $op) {
     q:c"({compile($op.left)}) + ({compile($op.right)})"
 }

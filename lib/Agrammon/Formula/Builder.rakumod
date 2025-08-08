@@ -334,6 +334,10 @@ class Agrammon::Formula::Builder {
         make Agrammon::Formula::BinOp::MultiplyPairwise;
     }
 
+    method infix:sym<**>($/) {
+        make Agrammon::Formula::BinOp::Power;
+    }
+
     method infix:sym<+>($/) {
         make Agrammon::Formula::BinOp::Add;
     }

@@ -301,6 +301,11 @@ class Agrammon::Formula::BinOp::MultiplyPairwise does Agrammon::Formula::BinOp {
     method assoc() { 'left' }
 }
 
+class Agrammon::Formula::BinOp::Power does Agrammon::Formula::BinOp {
+    method prec() { 'u=' }
+    method assoc() { 'left' }
+}
+
 class Agrammon::Formula::BinOp::Add does Agrammon::Formula::BinOp {
     method prec() { 't=' }
     method assoc() { 'left' }
