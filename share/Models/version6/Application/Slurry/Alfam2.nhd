@@ -3,7 +3,7 @@
 
 author   = Agrammon Group                 
 date     = 2017-07-10
-taxonomy = Application::Slurry::ALFAM2
+taxonomy = Application::Slurry::Alfam2
 
 +short
 
@@ -36,22 +36,33 @@ Hafner et al. ??? ALFAM2
   ++description
     dry matter content (undiluted) of cattle slurry
 
-# +alfam2_ph_pig
-# +alfam2_ph_cattle
++alfam2_ph_pig
+  value = 7.6
+  ++units
+    en = -
+  ++description
+    pH of pig slurry
+
++alfam2_ph_cattle
+  value = 7.2
+  ++units
+    en = -
+  ++description
+    pH of cattle slurry
+
 # +alfam2_temp
 # +alfam2_wind_speed
 
 *** external ***
 
 +::Livestock
-+Slurry::Apprate
-+Slurry::Ctech
++Applrate
++Ctech
 
 *** output ***
 
 +alfam2_dm
-  # print = 22
-  print = nh3,application,liquid,all
+  print = 22
   ++units
     en = %
   ++description
@@ -67,24 +78,24 @@ Hafner et al. ??? ALFAM2
         Val(has_pigs, ::Livestock),
         Tech(alfam2_dm_pig)
       ),
-      Val(c_dilution, Slurry::Apprate)
+      Val(c_dilution, Applrate)
     );
 
-#+alfam2_ph
-#  print = 22
-#  ++units
-#    en = %
-#  ++description
-#    slurry pH for different slurry types
-#  ++formula
-#    scale(
-#      Val(has_cattle, ::Livestock) P+
-#      Val(has_others, ::Livestock),
-#      Tech(alfam2_ph_cattle)
-#    ) P+ scale(
-#      Val(has_pigs, ::Livestock),
-#      Tech(alfam2_ph_pig)
-#    );
++alfam2_ph
+  print = 22
+  ++units
+    en = %
+  ++description
+    slurry pH for different slurry types
+  ++formula
+    scale(
+      Val(has_cattle, ::Livestock) P+
+      Val(has_others, ::Livestock),
+      Tech(alfam2_ph_cattle)
+    ) P+ scale(
+      Val(has_pigs, ::Livestock),
+      Tech(alfam2_ph_pig)
+    );
 
 #+alfam2_trailing_hose
 #  print = 22

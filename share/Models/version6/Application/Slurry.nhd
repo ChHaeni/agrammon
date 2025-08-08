@@ -105,6 +105,7 @@ Unter den analogen Annahmen resultieren für Schweinegülle Zucht (TAN Gehalt G�
 +Slurry::Csoft
 +Slurry::Cseason
 +Slurry::Cfermented
++Slurry::Alfam2
 ?if !Kantonal_LU
   +Slurry::CfreeFactor
 ?endif
