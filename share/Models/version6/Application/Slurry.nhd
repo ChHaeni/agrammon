@@ -159,7 +159,8 @@ Unter den analogen Annahmen resultieren für Schweinegülle Zucht (TAN Gehalt G�
     #### liquid application old incorrect way
     my $nh3_loss = scale( 
       Val(tan_into_application_liquid, ::Storage),
-      Val(c_tech, Slurry::Ctech) *
+      #Val(c_tech, Slurry::Ctech) *
+      Val(ef_alfam2, Slurry::Alfam2) *
       Val(c_soft, Slurry::Csoft) *
       Val(c_season, Slurry::Cseason) *
       (
@@ -199,7 +200,8 @@ Unter den analogen Annahmen resultieren für Schweinegülle Zucht (TAN Gehalt G�
         Val(c_app, Slurry::Applrate)
       ),
       # other factors affecting emission
-      Val(c_tech, Slurry::Ctech) *
+      #Val(c_tech, Slurry::Ctech) *
+      Val(ef_alfam2, Slurry::Alfam2) *
       Val(c_soft, Slurry::Csoft) *
       Val(c_season, Slurry::Cseason)
     );
