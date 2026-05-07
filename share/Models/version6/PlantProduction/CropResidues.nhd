@@ -231,6 +231,11 @@ Computes the annual NH3 emission from crop residues.
 
 +nh3_ncropresidues
   print = SummaryPlantProduction,ResultsPlantProduction,PlantNH3
+  ++labels
+    sort = 110
+      en = Crop residues
+      de = Ernterückstände
+      fr = Résidus végétaux 
   ++units  
     en = kg N/year
     de = kg N/Jahr
