@@ -1250,8 +1250,8 @@ gui	     = Plant Production::Mineral Fertiliser,Pflanzenbau::Mineralische Sticks
   ++labels
     sort = 110
       en = Mineral fertiliser
-      de = Mineralischer Dünger
-      fr = Engrais minéral 
+      de = Mineralische Stickstoffdünger
+      fr = Engrais minéraux azotés 
   ++units  
       en = kg N/year
       de = kg N/Jahr

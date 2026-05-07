@@ -33,11 +33,11 @@ Computes the annual NH3 emission from crop residues.
     todo
   ++help
     +++en
-       <p>todo</p>
+       <p>Enter the crop area in ha.</p>
     +++de
-       <p>todo</p> 
+       <p>Eingabe der Anbaufläche in ha.</p> 
     +++fr
-       <p>todo</p> 
+       <p>Saisir la surface cultivée en ha.</p> 
 
 +vegetable_residues
   type  = float
@@ -56,11 +56,11 @@ Computes the annual NH3 emission from crop residues.
     todo
   ++help
     +++en
-       <p>todo</p>
+       <p>Enter the crop area in ha.</p>
     +++de
-       <p>todo</p> 
+       <p>Eingabe der Anbaufläche in ha.</p> 
     +++fr
-       <p>todo</p> 
+       <p>Saisir la surface cultivée en ha.</p> 
 
 +green_manure
   type  = float
@@ -79,11 +79,11 @@ Computes the annual NH3 emission from crop residues.
     todo
   ++help
     +++en
-       <p>todo</p>
+       <p>Enter the crop area in ha.</p>
     +++de
-       <p>todo</p> 
+       <p>Eingabe der Anbaufläche in ha.</p> 
     +++fr
-       <p>todo</p> 
+       <p>Saisir la surface cultivée en ha.</p> 
 
 +meadow_residues
   type  = float
@@ -102,11 +102,11 @@ Computes the annual NH3 emission from crop residues.
     todo
   ++help
     +++en
-       <p>todo</p>
+       <p>Enter the crop area in ha.</p>
     +++de
-       <p>todo</p> 
+       <p>Eingabe der Anbaufläche in ha.</p> 
     +++fr
-       <p>todo</p> 
+       <p>Saisir la surface cultivée en ha.</p> 
 
 +pasture_mulch
   type  = float
@@ -125,11 +125,11 @@ Computes the annual NH3 emission from crop residues.
     todo
   ++help
     +++en
-       <p>todo</p>
+       <p>Enter the crop area in ha.</p>
     +++de
-       <p>todo</p> 
+       <p>Eingabe der Anbaufläche in ha.</p> 
     +++fr
-       <p>todo</p> 
+       <p>Saisir la surface cultivée en ha.</p> 
 
 *** technical ***
 
