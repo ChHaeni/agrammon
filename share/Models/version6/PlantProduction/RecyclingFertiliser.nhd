@@ -3,7 +3,7 @@
 author   = Agrammon Group
 date     = 2008-03-30
 taxonomy = PlantProduction::RecyclingFertiliser
-gui	 = PlantProduction::RecyclingFertiliser,Pflanzenbau::Recyclingdünger,Production végétale::Engrais de recyclage,Plant production::Recycling fertiliser
+gui	 = Plant Production::Recycling Fertiliser,Pflanzenbau::Recyclingdünger,Production végétale::Engrais de recyclage,Plant production::Recycling fertiliser
 
 +short
 
